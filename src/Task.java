@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
-
+import java.util.Scanner;
 
 class Task {
     private String description;
@@ -51,7 +52,6 @@ class TaskManager {
         }
     }
 
-
     public void viewTasksByCategory(String category) {
         if (tasks.isEmpty()) {
             System.out.println("No tasks found.");
@@ -59,20 +59,19 @@ class TaskManager {
             System.out.println("\nTask List" + (category.isEmpty() ? "" : " for Category: " + category));
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
-                if (category.isEmpty() || category.equalsIgnoreCase(task.getCategory())) {
+                if (category.isEmpty() || category.equals(task.getCategory())) {
                     String status = task.isComplete() ? "Complete" : "Incomplete";
-                    System.out.println((i + 1) + ". " + task.getDescription() + " - " + status);
+                    System.out.println((i + 1) + ". " + task.getDescription() + " - Status: " + status);
                 }
             }
         }
     }
 
-
     public void markAsCompleteByCategory(String category, int taskIndex) {
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
-            if (category.equalsIgnoreCase(task.getCategory())) {
+            if (category.equals(task.getCategory())) {
                 count++;
                 if (count == taskIndex) {
                     task.markAsComplete();
@@ -84,12 +83,11 @@ class TaskManager {
         System.out.println("Invalid task index for the specified category.");
     }
 
-
     public void deleteTaskByCategory(String category, int taskdelIndex) {
         int count = 0;
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
-            if (category.equalsIgnoreCase(task.getCategory())) {
+            if (category.equals(task.getCategory())) {
                 count++;
                 if (count == taskdelIndex) {
                     tasks.remove(i);
@@ -105,11 +103,7 @@ class TaskManager {
         return categoryIndex >= 1 && categoryIndex <= categories.size();
     }
 
-
     public List<String> getCategories() {
         return categories;
     }
 }
-
-
-

@@ -1,5 +1,5 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 public class TaskManagementSystem {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
@@ -55,6 +55,7 @@ public class TaskManagementSystem {
                             int completeTaskIndex = scanner.nextInt();
                             taskManager.markAsCompleteByCategory(completeCategory, completeTaskIndex);
                             break;
+
                         case 4:
                             System.out.println("Available categories:");
                             for (int i = 0; i < taskManager.getCategories().size(); i++) {

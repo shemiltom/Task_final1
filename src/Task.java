@@ -51,10 +51,11 @@ class TaskManager {
         }
     }
 
-    public void viewTasksByCategory(String category) {
-        if (tasks.isEmpty()) {
+    public boolean viewTasksByCategory(String category) {
+        boolean containsData = false;
+        /*if (tasks.isEmpty()) {
             System.out.println("No tasks found.");
-        } else {
+        } */if(!tasks.isEmpty()) {
             System.out.println("\nTask List" + (category.isEmpty() ? "" : " for Category: " + category));
             int taskIndex = 1;
             for (Task task : tasks) {
@@ -62,9 +63,14 @@ class TaskManager {
                     String status = task.isComplete() ? "Complete" : "Incomplete";
                     System.out.println(taskIndex + ". " + task.getDescription() + " - Status: " + status);
                     taskIndex++;
+                    containsData = true;
                 }
             }
         }
+        if(containsData) {
+            System.out.println("----");
+        }
+        return containsData;
     }
 
     public void markAsCompleteByCategory(String category, int taskIndex) {

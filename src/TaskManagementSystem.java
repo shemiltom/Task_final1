@@ -2,6 +2,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 public class TaskManagementSystem {
+
+    private static final int REMOVE = 4;
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             TaskManager taskManager = new TaskManager();
@@ -32,7 +34,7 @@ public class TaskManagementSystem {
                             String taskDescriptionAdd = scanner.nextLine().trim();
                             taskManager.addTask(taskDescriptionAdd, categoryIndexAdd);
                             break;
-                        case 2:
+                        case 2: {
                             System.out.println("Available categories:");
                             categories = taskManager.getCategories();
                             for (int i = 0; i < categories.size(); i++) {
@@ -42,7 +44,11 @@ public class TaskManagementSystem {
                             int categoryIndexView = scanner.nextInt();
                             scanner.nextLine();
                             String viewCategory = categories.get(categoryIndexView - 1);
-                            taskManager.viewTasksByCategory(viewCategory);
+                            boolean containsData = taskManager.viewTasksByCategory(viewCategory);
+                            if(!containsData) {
+                                System.out.println("No Data Found!");
+                            }
+                        }
                             break;
                         case 3:
                             System.out.println("Available categories:");
@@ -59,7 +65,7 @@ public class TaskManagementSystem {
                             int completeTaskIndex = scanner.nextInt();
                             taskManager.markAsCompleteByCategory(completeCategory, completeTaskIndex);
                             break;
-                        case 4:
+                        case REMOVE:
                             System.out.println("Available categories:");
                             categories = taskManager.getCategories();
                             for (int i = 0; i < categories.size(); i++) {
@@ -69,10 +75,14 @@ public class TaskManagementSystem {
                             int categoryIndexDelete = scanner.nextInt();
                             scanner.nextLine();
                             String deleteCategory = categories.get(categoryIndexDelete - 1);
-                            taskManager.viewTasksByCategory(deleteCategory);
-                            System.out.print("Enter the number of the task to be removed: ");
-                            int deleteTaskIndex = scanner.nextInt();
-                            taskManager.deleteTaskByCategory(deleteCategory, deleteTaskIndex);
+                            boolean containsData = taskManager.viewTasksByCategory(deleteCategory);
+                            if(containsData) {
+                                System.out.print("Enter the number of the task to be removed: ");
+                                int deleteTaskIndex = scanner.nextInt();
+                                taskManager.deleteTaskByCategory(deleteCategory, deleteTaskIndex);
+                            } else {
+                                System.out.print("No Data Found to delete");
+                            }
                             break;
                         case 0:
                             System.out.println("Exiting program. Goodbye!");

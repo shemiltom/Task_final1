@@ -3,9 +3,9 @@ import java.util.List;
 
 
 class Task {
-    private String description;
+    private final String description;
     private boolean complete;
-    private String category;
+    private final String category;
 
     public Task(String description, String category) {
         this.description = description;
@@ -31,8 +31,8 @@ class Task {
 }
 
 class TaskManager {
-    private List<Task> tasks = new ArrayList<>();
-    private List<String> categories = new ArrayList<>();
+    private final List<Task> tasks = new ArrayList<>();
+    private final List<String> categories = new ArrayList<>();
 
     public TaskManager() {
         categories.add("work");

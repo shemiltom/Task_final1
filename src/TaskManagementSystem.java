@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 public class TaskManagementSystem {
     public static void main(String[] args) {
@@ -27,7 +25,7 @@ public class TaskManagementSystem {
                             }
                             System.out.print("Enter category index: ");
                             int categoryIndexAdd = scanner.nextInt();
-                            scanner.nextLine(); // Consume the newline
+                            scanner.nextLine();
                             System.out.print("Enter task description: ");
                             String taskDescriptionAdd = scanner.nextLine().trim();
                             taskManager.addTask(taskDescriptionAdd, categoryIndexAdd);
@@ -39,7 +37,7 @@ public class TaskManagementSystem {
                             }
                             System.out.print("Enter category index to view tasks: ");
                             int categoryIndexView = scanner.nextInt();
-                            scanner.nextLine(); // Consume the newline
+                            scanner.nextLine();
                             String viewCategory = taskManager.getCategories().get(categoryIndexView - 1);
                             taskManager.viewTasksByCategory(viewCategory);
                             break;
@@ -50,7 +48,7 @@ public class TaskManagementSystem {
                             }
                             System.out.print("Enter category index to view tasks: ");
                             int categoryIndexComplete = scanner.nextInt();
-                            scanner.nextLine(); // Consume the newline
+                            scanner.nextLine();
                             String completeCategory = taskManager.getCategories().get(categoryIndexComplete - 1);
                             taskManager.viewTasksByCategory(completeCategory);
                             System.out.print("Enter the number of the task to mark as complete: ");
@@ -64,7 +62,7 @@ public class TaskManagementSystem {
                             }
                             System.out.print("Enter category index to view tasks: ");
                             int categoryIndexDelete = scanner.nextInt();
-                            scanner.nextLine(); // Consume the newline
+                            scanner.nextLine();
                             String deleteCategory = taskManager.getCategories().get(categoryIndexDelete - 1);
                             taskManager.viewTasksByCategory(deleteCategory);
                             System.out.print("Enter the number of the task to be removed: ");
@@ -79,7 +77,7 @@ public class TaskManagementSystem {
                     }
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input. Please enter a number.");
-                    scanner.next(); // Clear the invalid input
+                    scanner.next();
                 }
             }
         }

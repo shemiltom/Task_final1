@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
+
 
 class Task {
     private String description;
@@ -52,9 +51,6 @@ class TaskManager {
         }
     }
 
-    public void viewTasks() {
-        viewTasksByCategory(""); // View all tasks
-    }
 
     public void viewTasksByCategory(String category) {
         if (tasks.isEmpty()) {
@@ -71,15 +67,6 @@ class TaskManager {
         }
     }
 
-    public void markAsComplete(int taskIndex) {
-        if (taskIndex < 1 || taskIndex > tasks.size()) {
-            System.out.println("Invalid task index.");
-        } else {
-            Task task = tasks.get(taskIndex - 1);
-            task.markAsComplete();
-            System.out.println("Task marked as complete!");
-        }
-    }
 
     public void markAsCompleteByCategory(String category, int taskIndex) {
         int count = 0;
@@ -97,14 +84,6 @@ class TaskManager {
         System.out.println("Invalid task index for the specified category.");
     }
 
-    public void deleteTask(int taskdelIndex) {
-        if (taskdelIndex < 1 || taskdelIndex > tasks.size()) {
-            System.out.println("Invalid task index.");
-        } else {
-            Task task = tasks.remove(taskdelIndex - 1);
-            System.out.println("Task removed successfully");
-        }
-    }
 
     public void deleteTaskByCategory(String category, int taskdelIndex) {
         int count = 0;
@@ -126,9 +105,6 @@ class TaskManager {
         return categoryIndex >= 1 && categoryIndex <= categories.size();
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
 
     public List<String> getCategories() {
         return categories;

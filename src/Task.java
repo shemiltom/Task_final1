@@ -1,7 +1,6 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Scanner;
+
 
 class Task {
     private String description;
@@ -57,11 +56,12 @@ class TaskManager {
             System.out.println("No tasks found.");
         } else {
             System.out.println("\nTask List" + (category.isEmpty() ? "" : " for Category: " + category));
-            for (int i = 0; i < tasks.size(); i++) {
-                Task task = tasks.get(i);
+            int taskIndex = 1;
+            for (Task task : tasks) {
                 if (category.isEmpty() || category.equals(task.getCategory())) {
                     String status = task.isComplete() ? "Complete" : "Incomplete";
-                    System.out.println((i + 1) + ". " + task.getDescription() + " - Status: " + status);
+                    System.out.println(taskIndex + ". " + task.getDescription() + " - Status: " + status);
+                    taskIndex++;
                 }
             }
         }
@@ -69,8 +69,7 @@ class TaskManager {
 
     public void markAsCompleteByCategory(String category, int taskIndex) {
         int count = 0;
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
+        for (Task task : tasks) {
             if (category.equals(task.getCategory())) {
                 count++;
                 if (count == taskIndex) {

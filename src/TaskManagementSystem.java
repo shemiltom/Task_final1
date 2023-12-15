@@ -1,5 +1,6 @@
-import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 public class TaskManagementSystem {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
@@ -20,8 +21,9 @@ public class TaskManagementSystem {
                     switch (choice) {
                         case 1:
                             System.out.println("Available categories:");
-                            for (int i = 0; i < taskManager.getCategories().size(); i++) {
-                                System.out.println((i + 1) + ". " + taskManager.getCategories().get(i));
+                            List<String> categories = taskManager.getCategories();
+                            for (int i = 0; i < categories.size(); i++) {
+                                System.out.println((i + 1) + ". " + categories.get(i));
                             }
                             System.out.print("Enter category index: ");
                             int categoryIndexAdd = scanner.nextInt();
@@ -32,39 +34,41 @@ public class TaskManagementSystem {
                             break;
                         case 2:
                             System.out.println("Available categories:");
-                            for (int i = 0; i < taskManager.getCategories().size(); i++) {
-                                System.out.println((i + 1) + ". " + taskManager.getCategories().get(i));
+                            categories = taskManager.getCategories();
+                            for (int i = 0; i < categories.size(); i++) {
+                                System.out.println((i + 1) + ". " + categories.get(i));
                             }
                             System.out.print("Enter category index to view tasks: ");
                             int categoryIndexView = scanner.nextInt();
                             scanner.nextLine();
-                            String viewCategory = taskManager.getCategories().get(categoryIndexView - 1);
+                            String viewCategory = categories.get(categoryIndexView - 1);
                             taskManager.viewTasksByCategory(viewCategory);
                             break;
                         case 3:
                             System.out.println("Available categories:");
-                            for (int i = 0; i < taskManager.getCategories().size(); i++) {
-                                System.out.println((i + 1) + ". " + taskManager.getCategories().get(i));
+                            categories = taskManager.getCategories();
+                            for (int i = 0; i < categories.size(); i++) {
+                                System.out.println((i + 1) + ". " + categories.get(i));
                             }
                             System.out.print("Enter category index to view tasks: ");
                             int categoryIndexComplete = scanner.nextInt();
                             scanner.nextLine();
-                            String completeCategory = taskManager.getCategories().get(categoryIndexComplete - 1);
+                            String completeCategory = categories.get(categoryIndexComplete - 1);
                             taskManager.viewTasksByCategory(completeCategory);
                             System.out.print("Enter the number of the task to mark as complete: ");
                             int completeTaskIndex = scanner.nextInt();
                             taskManager.markAsCompleteByCategory(completeCategory, completeTaskIndex);
                             break;
-
                         case 4:
                             System.out.println("Available categories:");
-                            for (int i = 0; i < taskManager.getCategories().size(); i++) {
-                                System.out.println((i + 1) + ". " + taskManager.getCategories().get(i));
+                            categories = taskManager.getCategories();
+                            for (int i = 0; i < categories.size(); i++) {
+                                System.out.println((i + 1) + ". " + categories.get(i));
                             }
                             System.out.print("Enter category index to view tasks: ");
                             int categoryIndexDelete = scanner.nextInt();
                             scanner.nextLine();
-                            String deleteCategory = taskManager.getCategories().get(categoryIndexDelete - 1);
+                            String deleteCategory = categories.get(categoryIndexDelete - 1);
                             taskManager.viewTasksByCategory(deleteCategory);
                             System.out.print("Enter the number of the task to be removed: ");
                             int deleteTaskIndex = scanner.nextInt();
